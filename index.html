@@ -1,76 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oscar Furnitures Nairobi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSCAR FURNITURES NAIROBI</title>
   <style>
-    body{font-family:Arial,sans-serif;padding:10px;max-width:650px;margin:auto;background:#f5f5f5}
-    h1{color:#1d3557;text-align:center;margin:10px 0;font-size:28px}
-    .top-contact{background:#1d3557;color:#fff;padding:15px;text-align:center;border-radius:8px;margin-bottom:15px}
-    .top-contact h3{margin:0;font-size:18px}
-    .top-contact p{margin:5px 0 0 0;font-size:14px;opacity:0.9}
-    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-    .item img{width:100%;height:200px;object-fit:cover;display:block;background:#eee}
-    .info{padding:12px}
-    .price{color:#e63946;font-weight:bold;font-size:20px;margin:0 0 8px 0}
-    .btn{background:#25D366;color:#fff;padding:10px;text-decoration:none;border-radius:5px;display:block;text-align:center;font-weight:bold;font-size:15px}
-    .footer{text-align:center;margin:25px 0;color:#666;font-size:14px}
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+ .header { text-align: center; margin-bottom: 30px; }
+ .header h1 { color: #2c3e50; margin: 0; font-size: 28px; }
+ .header p { color: #7f8c8d; margin: 10px 0; }
+ .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+ .product { background: white; border-radius: 10px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
+ .product img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+ .product.name { color: #2c3e50; font-size: 14px; margin: 8px 0; text-transform: capitalize; }
+ .product h3 { color: #27ae60; margin: 5px 0 10px 0; font-size: 18px; }
+ .whatsapp-btn { display: inline-block; background: #25D366; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
-
-  <h1>OSCAR FURNITURES</h1>
-  
-  <div class="top-contact">
-    <h3>📞 WhatsApp: 0708 813 410</h3>
-    <p>Pipeline, Nairobi | Tap any design to order</p>
+  <div class="header">
+    <h1>OSCAR FURNITURES NAIROBI</h1>
+    <p>Quality furniture • Order via WhatsApp • Delivery in Nairobi</p>
+    <a href="https://wa.me/254708813410" class="whatsapp-btn">Chat with Oscar +254 708 813 410</a>
   </div>
 
-  <div class="gallery">
-    
-    <!-- DESIGN 1 -->
-    <div class="item">
-      <img src="sofa1.jpg" alt="Sofa Design 1">
-      <div class="info">
-        <p class="price">KES 45,000</p>
-        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%201%20-%20KES%2045%2C000" class="btn">Order on WhatsApp</a>
-      </div>
-    </div>
+  <div id="gallery" class="gallery"></div>
 
-    <!-- DESIGN 2 -->
-    <div class="item">
-      <img src="sofa2.jpg" alt="Sofa Design 2">
-      <div class="info">
-        <p class="price">KES 38,000</p>
-        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%202%20-%20KES%2038%2C000" class="btn">Order on WhatsApp</a>
-      </div>
-    </div>
+  <script>
+    const username = 'meshackmashal';
+    const repo = 'OSCAR-FURNITURES';
+    const gallery = document.getElementById('gallery');
 
-    <!-- DESIGN 3 -->
-    <div class="item">
-      <img src="bed1.jpg" alt="Bed Design 3">
-      <div class="info">
-        <p class="price">KES 52,000</p>
-        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%203%20-%20KES%2052%2C000" class="btn">Order on WhatsApp</a>
-      </div>
-    </div>
+    fetch(`https://api.github.com/repos/${username}/${repo}/contents/`)
+ .then(response => response.json())
+ .then(files => {
+        gallery.innerHTML = '';
+        const images = files.filter(file => file.name.match(/\.(jpg|jpeg|png)$/i));
 
-    <!-- DESIGN 4 -->
-    <div class="item">
-      <img src="table1.jpg" alt="Table Design 4">
-      <div class="info">
-        <p class="price">KES 18,000</p>
-        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%204%20-%20KES%2018%2C000" class="btn">Order on WhatsApp</a>
-      </div>
-    </div>
+        images.forEach(file => {
+          let name = file.name.replace(/\.[^/.]+$/, "");
+          let price = 'Ask for price';
 
-  </div>
+          if(name.includes('__')) {
+            const parts = name.split('__');
+            name = parts[0].replace(/[-_]/g, " ");
+            price = parts[1].replace('KES', 'KES ');
+          } else {
+            name = name.replace(/[-_]/g, " ");
+          }
 
-  <div class="footer">
-    <p>Delivery available within Nairobi</p>
-  </div>
+          const whatsappText = encodeURIComponent(`Hi Oscar, I want to order: ${name} - ${price}`);
 
+          const productDiv = document.createElement('div');
+          productDiv.className = 'product';
+          productDiv.innerHTML = `
+            <img src="${file.name}" alt="${name}" loading="lazy">
+            <div class="name">${name}</div>
+            <h3>${price}</h3>
+            <a href="https://wa.me/254708813410?text=${whatsappText}" class="whatsapp-btn">Order on WhatsApp</a>
+          `;
+          gallery.appendChild(productDiv);
+        });
+      });
+  </script>
 </body>
 </html>
