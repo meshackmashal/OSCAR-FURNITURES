@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oscar Furnitures - Buy & Sell in Nairobi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5;padding:10px}
+.container{max-width:600px;margin:0 auto;background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+h1{color:#2c3e50;text-align:center;margin-bottom:10px}
+.tagline{text-align:center;color:#7f8c8d;margin-bottom:20px}
+.post-form{background:#ecf0f1;padding:15px;border-radius:8px;margin-bottom:20px}
+input,textarea,select{width:100%;padding:10px;margin:5px 0;border:1px solid #bdc3c7;border-radius:5px}
+button{background:#27ae60;color:white;border:none;padding:12px;border-radius:5px;cursor:pointer;width:100%;font-weight:bold}
+button:hover{background:#219a52}
+.item{border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:8px;background:#fafafa}
+.item h3{color:#2c3e50;margin-bottom:5px}
+.price{color:#e74c3c;font-weight:bold;font-size:18px}
+.contact-btn{background:#25D366;margin-top:10px}
+.whatsapp-top{background:#25D366;display:block;text-align:center;padding:12px;color:white;text-decoration:none;border-radius:5px;margin-bottom:15px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Oscar Furnitures</h1>
+<p class="tagline">Quality Furniture in Nairobi - Buy & Sell</p>
+
+<a href="https://wa.me/254708813410?text=Hi%20Oscar%20Furnitures,%20I'm%20interested%20in%20your%20furniture" class="whatsapp-top">Chat Oscar Furnitures on WhatsApp</a>
+
+<div class="post-form">
+<h3>Post Your Furniture</h3>
+<input type="text" id="title" placeholder="Item Name: e.g. 6-Seater Sofa">
+<input type="number" id="price" placeholder="Price in KES">
+<input type="text" id="location" placeholder="Location: e.g. Westlands, Nairobi">
+<input type="tel" id="phone" placeholder="Your WhatsApp Number: e.g. 0712345678">
+<textarea id="desc" placeholder="Description: condition, size, etc"></textarea>
+<button onclick="postItem()">Post Item</button>
+</div>
+
+<div id="listings">
+<h3>Available Furniture</h3>
+</div>
+</div>
+
+<script>
+function loadItems(){
+let items = JSON.parse(localStorage.getItem('furniture')||'[]');
+let html = '';
+items.reverse().forEach(item=>{
+html += `<div class="item">
+<h3>${item.title}</h3>
+<p class="price">KES ${item.price}</p>
+<p><b>Location:</b> ${item.location}</p>
+<p>${item.desc}</p>
+<a href="https://wa.me/254${item.phone.replace(/^0/,'')}?text=Hi,%20I'm%20interested%20in%20your%20${encodeURIComponent(item.title)}%20for%20KES%20${item.price}" class="contact-btn">
+<button class="contact-btn">WhatsApp Seller</button></a>
+</div>`;
+});
+document.getElementById('listings').innerHTML = '<h3>Available Furniture</h3>' + html;
+}
+
+function postItem(){
+let title=document.getElementById('title').value;
+let price=document.getElementById('price').value;
+let location=document.getElementById('location').value;
+let phone=document.getElementById('phone').value;
+let desc=document.getElementById('desc').value;
+if(!title||!price||!phone){alert('Fill Name, Price and Phone');return;}
+let items=JSON.parse(localStorage.getItem('furniture')||'[]');
+items.push({title,price,location,phone,desc});
+localStorage.setItem('furniture',JSON.stringify(items));
+loadItems();
+document.getElementById('title').value='';
+document.getElementById('price').value='';
+document.getElementById('location').value='';
+document.getElementById('phone').value='';
+document.getElementById('desc').value='';
+alert('Item Posted!');
+}
+loadItems();
+</script>
+</body>
+</html>
