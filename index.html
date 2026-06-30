@@ -5,35 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Oscar Furnitures Nairobi</title>
   <style>
-    body{font-family:Arial,sans-serif;padding:15px;max-width:600px;margin:auto}
-    h1{color:#1d3557;text-align:center}
-    .tagline{text-align:center;color:#555;margin-bottom:20px}
-    .card{border:1px solid #ddd;padding:15px;margin-bottom:20px;border-radius:8px}
-    .price{color:#e63946;font-weight:bold;font-size:22px;margin:10px 0}
-    .btn{background:#25D366;color:#fff;padding:12px 20px;text-decoration:none;border-radius:5px;display:block;text-align:center;margin-top:12px;font-weight:bold}
+    body{font-family:Arial,sans-serif;padding:10px;max-width:650px;margin:auto;background:#f5f5f5}
+    h1{color:#1d3557;text-align:center;margin:10px 0;font-size:28px}
+    .top-contact{background:#1d3557;color:#fff;padding:15px;text-align:center;border-radius:8px;margin-bottom:15px}
+    .top-contact h3{margin:0;font-size:18px}
+    .top-contact p{margin:5px 0 0 0;font-size:14px;opacity:0.9}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+    .item img{width:100%;height:200px;object-fit:cover;display:block;background:#eee}
+    .info{padding:12px}
+    .price{color:#e63946;font-weight:bold;font-size:20px;margin:0 0 8px 0}
+    .btn{background:#25D366;color:#fff;padding:10px;text-decoration:none;border-radius:5px;display:block;text-align:center;font-weight:bold;font-size:15px}
+    .footer{text-align:center;margin:25px 0;color:#666;font-size:14px}
   </style>
 </head>
 <body>
 
-  <h1>OSCAR FURNITURES NAIROBI</h1>
-  <p class="tagline">Quality furniture. WhatsApp to order. Delivery available.</p>
+  <h1>OSCAR FURNITURES</h1>
+  
+  <div class="top-contact">
+    <h3>📞 WhatsApp: 0708 813 410</h3>
+    <p>Pipeline, Nairobi | Tap any design to order</p>
+  </div>
 
-  <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20to%20see%20what%20furniture%20you%20have%20available" 
-     class="btn">
-     💬 Chat Oscar: 0708813410
-  </a>
+  <div class="gallery">
+    
+    <!-- DESIGN 1 -->
+    <div class="item">
+      <img src="sofa1.jpg" alt="Sofa Design 1">
+      <div class="info">
+        <p class="price">KES 45,000</p>
+        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%201%20-%20KES%2045%2C000" class="btn">Order on WhatsApp</a>
+      </div>
+    </div>
 
-  <h2 style="margin-top:30px;">Available Now</h2>
+    <!-- DESIGN 2 -->
+    <div class="item">
+      <img src="sofa2.jpg" alt="Sofa Design 2">
+      <div class="info">
+        <p class="price">KES 38,000</p>
+        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%202%20-%20KES%2038%2C000" class="btn">Order on WhatsApp</a>
+      </div>
+    </div>
 
-  <div class="card">
-    <h3>6-Seater Brown Leather Sofa</h3>
-    <p class="price">KES 45,000</p>
-    <p><strong>Location:</strong> Pipeline, Nairobi</p>
-    <p>Clean, slightly used. Very comfortable.</p>
-    <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20the%206-Seater%20Brown%20Leather%20Sofa%20for%20KES%2045%2C000.%20Still%20available%3F" 
-       class="btn">
-       Order This Sofa
-    </a>
+    <!-- DESIGN 3 -->
+    <div class="item">
+      <img src="bed1.jpg" alt="Bed Design 3">
+      <div class="info">
+        <p class="price">KES 52,000</p>
+        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%203%20-%20KES%2052%2C000" class="btn">Order on WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- DESIGN 4 -->
+    <div class="item">
+      <img src="table1.jpg" alt="Table Design 4">
+      <div class="info">
+        <p class="price">KES 18,000</p>
+        <a href="https://wa.me/254708813410?text=Hi%20Oscar%2C%20I%20want%20Design%204%20-%20KES%2018%2C000" class="btn">Order on WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>Delivery available within Nairobi</p>
   </div>
 
 </body>
